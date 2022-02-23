@@ -1,0 +1,32 @@
+[package]
+name = "orml-xcm-support"
+description = "Supporting module for XCM integration."
+repository = "https://github.com/open-web3-stack/open-runtime-module-library/tree/master/xcm-support"
+license = "Apache-2.0"
+version = "0.4.1-dev"
+authors = ["Acala Developers"]
+edition = "2018"
+
+[dependencies]
+codec = { git = "https://github.com/axia-tech/axia-scale-codec", branch = "v2.3.1", package = "axia-scale-codec", version = "2.3.1", default-features = false }
+
+sp-std = { git = "https://github.com/axia-tech/axlib", branch = "dev", default-features = false }
+sp-runtime = { git = "https://github.com/axia-tech/axlib", branch = "dev", default-features = false }
+
+frame-support = { git = "https://github.com/axia-tech/axlib", branch = "dev", default-features = false }
+
+xcm = { git = "https://github.com/axia-tech/axia", branch = "dev", default-features = false }
+xcm-executor = { git = "https://github.com/axia-tech/axia", branch = "dev", default-features = false }
+
+orml-traits = { path = "../traits", version = "0.4.1-dev", default-features = false }
+
+[features]
+default = ["std"]
+std = [
+	"sp-std/std",
+	"sp-runtime/std",
+	"frame-support/std",
+	"xcm/std",
+	"xcm-executor/std",
+	"orml-traits/std",
+]

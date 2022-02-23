@@ -1,0 +1,40 @@
+[package]
+name = "orml-weight-meter"
+version = "0.4.1-dev"
+license = "Apache-2.0"
+authors = ["Laminar Developers <hello@laminar.one>"]
+edition = "2018"
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[dependencies]
+spin = "0.7.1"
+scale-info = { git = "https://github.com/axia-tech/scale-info", branch = "v1.0.0", version = "1.0", default-features = false, features = ["derive"] }
+frame-support = { git = "https://github.com/axia-tech/axlib", branch = "dev", default-features = false }
+weight-meter-procedural = { path = "weight-meter-procedural", default-features = false }
+orml-bencher = { path = "../bencher", default-features = false, optional = true }
+
+[dev-dependencies]
+serde = { version = "1.0.124" }
+codec = { git = "https://github.com/axia-tech/axia-scale-codec", branch = "v2.3.1", package = "axia-scale-codec", version = "2.3.1" }
+sp-runtime = { git = "https://github.com/axia-tech/axlib", branch = "dev" }
+sp-io = { git = "https://github.com/axia-tech/axlib", branch = "dev" }
+sp-std = { git = "https://github.com/axia-tech/axlib", branch = "dev" }
+
+frame-support = { git = "https://github.com/axia-tech/axlib", branch = "dev" }
+frame-system = { git = "https://github.com/axia-tech/axlib", branch = "dev" }
+pallet-balances = { git = "https://github.com/axia-tech/axlib", branch = "dev" }
+
+[features]
+default = ["std"]
+std = [
+	"scale-info/std",
+	"frame-support/std",
+	"weight-meter-procedural/std",
+	"orml-bencher/std",
+]
+bench = [
+	"weight-meter-procedural/bench",
+	"orml-bencher",
+]

@@ -1,0 +1,74 @@
+[package]
+name = "orml-xtokens"
+description = "Cross-chain token transfer."
+repository = "https://github.com/open-web3-stack/open-runtime-module-library/tree/master/xtokens"
+license = "Apache-2.0"
+version = "0.4.1-dev"
+authors = ["Acala Developers"]
+edition = "2018"
+
+[dependencies]
+scale-info = { git = "https://github.com/axia-tech/scale-info", branch = "v1.0.0", version = "1.0", default-features = false, features = ["derive"] }
+serde = { version = "1.0.124", optional = true }
+codec = { git = "https://github.com/axia-tech/axia-scale-codec", branch = "v2.3.1", package = "axia-scale-codec", version = "2.3.1", default-features = false }
+sp-runtime = { git = "https://github.com/axia-tech/axlib", branch = "dev", default-features = false }
+sp-io = { git = "https://github.com/axia-tech/axlib", branch = "dev", default-features = false }
+sp-std = { git = "https://github.com/axia-tech/axlib", branch = "dev", default-features = false }
+
+frame-support = { git = "https://github.com/axia-tech/axlib", branch = "dev", default-features = false }
+frame-system = { git = "https://github.com/axia-tech/axlib", branch = "dev", default-features = false }
+
+cumulus-primitives-core = { git = "https://github.com/axia-tech/cumulus", branch = "master", default-features = false }
+
+xcm = { git = "https://github.com/axia-tech/axia", branch = "dev", default-features = false }
+xcm-executor = { git = "https://github.com/axia-tech/axia", branch = "dev", default-features = false }
+
+orml-xcm-support = { path = "../xcm-support", default-features = false }
+orml-traits = { path = "../traits", default-features = false}
+
+[dev-dependencies]
+sp-core = { git = "https://github.com/axia-tech/axlib", branch = "dev" }
+pallet-balances = { git = "https://github.com/axia-tech/axlib", branch = "dev" }
+
+# cumulus
+cumulus-primitives-core = { git = "https://github.com/axia-tech/cumulus", branch = "master" }
+cumulus-pallet-dmp-queue = { git = "https://github.com/axia-tech/cumulus", branch = "master" }
+cumulus-pallet-xcmp-queue = { git = "https://github.com/axia-tech/cumulus", branch = "master" }
+cumulus-pallet-xcm = { git = "https://github.com/axia-tech/cumulus", branch = "master" }
+allychain-info = { git = "https://github.com/axia-tech/cumulus", branch = "master" }
+
+# axia
+axia-allychain = { git = "https://github.com/axia-tech/axia", branch = "dev" }
+xcm = { git = "https://github.com/axia-tech/axia", branch = "dev" }
+xcm-executor = { git = "https://github.com/axia-tech/axia", branch = "dev" }
+xcm-builder = { git = "https://github.com/axia-tech/axia", branch = "dev" }
+pallet-xcm = { git = "https://github.com/axia-tech/axia", branch = "dev" }
+axia-runtime-allychains = { git = "https://github.com/axia-tech/axia", branch = "dev" }
+xcm-simulator = { git = "https://github.com/axia-tech/axia", branch = "dev" }
+
+orml-tokens = { path = "../tokens" }
+orml-xcm = { path = "../xcm" }
+
+[features]
+default = ["std"]
+std = [
+	"serde",
+	"codec/std",
+	"scale-info/std",
+	"sp-runtime/std",
+	"sp-std/std",
+	"sp-io/std",
+	"frame-support/std",
+	"frame-system/std",
+	"cumulus-primitives-core/std",
+	"xcm/std",
+	"xcm-executor/std",
+	"orml-xcm-support/std",
+	"orml-traits/std",
+]
+try-runtime = ["frame-support/try-runtime"]
+# Needed because of cargo feature pollution.
+runtime-benchmarks = [
+	"xcm-builder/runtime-benchmarks",
+	"pallet-xcm/runtime-benchmarks",
+]
